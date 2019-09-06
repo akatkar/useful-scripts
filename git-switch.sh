@@ -32,12 +32,12 @@ fi
 # Define username for private github
 USER1_NAME=akatkar
 USER1_MAIL=alikatkar@gmail.com
-USER1_SSH=gmail_id_rsa
+USER1_SSH=github_id_rsa
 
 # Define username for company github
-USER2_NAME=alikatkar
-USER2_MAIL=ali.katkar@aurea.com
-USER2_SSH=aurea_id_rsa
+USER2_NAME=ali_katkar
+USER2_MAIL=alikatkar@gmail.com
+USER2_SSH=bitbucket_id_rsa
 
 if [ "$CURRENT_USER_NAME" == "$USER1_NAME" ]
 then
