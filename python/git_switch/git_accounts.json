@@ -1,0 +1,14 @@
+[
+  {
+    "account": "bitbucket",
+    "user_name": "ali_katkar",
+    "user_email": "alikatkar@gmail.com",
+    "ssh_prefix": "bitbucket"
+ },
+  {
+    "account": "github",
+    "user_name": "akatkar",
+    "user_email": "alikatkar@gmail.com",
+    "ssh_prefix": "github"
+  }
+]

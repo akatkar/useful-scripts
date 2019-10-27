@@ -1,6 +1,5 @@
 # useful-scripts
 
-> git-switch.sh can be used for switching ssh keys and git account. It is still primitive
+## Python 3.x 
 
-> git-completion can be used for coloring and seeing for git branches as command prompt
-
+## Bash Scripts
