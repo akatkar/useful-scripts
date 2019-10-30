@@ -65,7 +65,7 @@ def switch_ssh_keys(account):
         print(private)
         print(public)
         exit(1)
-
+    print(f'Switched to {account["account"]}')
 
 def switch_to(account):
     switch_ssh_keys(account)
@@ -77,7 +77,7 @@ def arguments():
     parser = ArgumentParser(description='Switch Git Accounts')
 
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('-c', '--current', action='store_true', default='-c')
+    group.add_argument('-c', '--current', action='store_true')
     group.add_argument('-l', '--list', action='store_true')
     group.add_argument('-s', '--switch')
     return parser.parse_args()
@@ -89,9 +89,11 @@ def main():
         show_accounts(accounts)
     elif args.current:
         show_current(accounts)
-    else:
+    elif args.switch:
         new_account = find_account_by_name(accounts, args.switch)
         switch_to(new_account)
+    else:
+        show_current(accounts)
 
 
 if __name__ == '__main__':
