@@ -1,3 +1,4 @@
+
 from shutil import copyfile
 from argparse import ArgumentParser
 import json
@@ -43,7 +44,7 @@ def show_current(accounts):
     useremail = exec_cmd('git config --global user.email')
 
     for account in accounts:
-        if account['user_name'] == username and account['user_email'] == useremail :
+        if account['user_name'] == username and account['user_email'] == useremail:
             print(f'Current config is [{account["account"]}]')
             break
     else:
@@ -54,18 +55,22 @@ def show_current(accounts):
 
 
 def switch_ssh_keys(account):
-    ssh = os.path.expanduser('~/.ssh')
-    private = os.path.join(ssh, f'{account["ssh_prefix"]}_id_rsa')
-    public = os.path.join(ssh, f'{account["ssh_prefix"]}_id_rsa.pub')
-    if os.path.isfile(private) and os.path.isfile(public):
-        copyfile(private, os.path.join(ssh, 'id_rsa'))
-        copyfile(public, os.path.join(ssh, 'id_rsa.pub'))
+    if account['ssh_prefix']:
+        ssh = os.path.expanduser('~/.ssh')
+        private = os.path.join(ssh, f'{account["ssh_prefix"]}_id_rsa')
+        public = os.path.join(ssh, f'{account["ssh_prefix"]}_id_rsa.pub')
+        if os.path.isfile(private) and os.path.isfile(public):
+            copyfile(private, os.path.join(ssh, 'id_rsa'))
+            copyfile(public, os.path.join(ssh, 'id_rsa.pub'))
+        else:
+            print("shh keys cannot be found. Check prefix and key files")
+            print(private)
+            print(public)
+            exit(1)
+        print(f'Switched to {account["account"]}')
     else:
-        print("shh keys cannot be found. Check prefix and key files")
-        print(private)
-        print(public)
-        exit(1)
-    print(f'Switched to {account["account"]}')
+        print(f'There is no defined ssh prefix for account {account["account"]}')
+
 
 def switch_to(account):
     switch_ssh_keys(account)
@@ -81,6 +86,7 @@ def arguments():
     group.add_argument('-l', '--list', action='store_true')
     group.add_argument('-s', '--switch')
     return parser.parse_args()
+
 
 def main():
     args = arguments()
