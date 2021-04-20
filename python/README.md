@@ -14,5 +14,5 @@ In windows, switching git accounts may be problematic. For example, I had 3 git 
 > git-switch --switch <account>
 ```
 
-Note that this script just replace saved key as default key for ssh agent. 
+Note that this script just replaces the saved keys as default keys for ssh agent. 
 
